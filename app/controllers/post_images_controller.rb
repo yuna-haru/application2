@@ -7,11 +7,14 @@ class PostImagesController < ApplicationController
   def create
     @post_image = PostImage.new(post_image_params)
     @post_image.user_id = current_user.id
+      #@post_image(投稿データ)のuser_idを、current_user.id(今ログインしているユーザーの ID)に
+      #指定することで、投稿データに今ログイン中のユーザーの ID を持たせることができる。
     @post_image.save
     redirect_to post_images_path
   end
 
   def index
+    @post_images = PostImage.all
   end
 
   def show
